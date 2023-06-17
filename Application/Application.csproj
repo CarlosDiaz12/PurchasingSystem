@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\Exceptions\" />
+    <Folder Include="Department\DTOs\" />
+    <Folder Include="Article\" />
+    <Folder Include="Brand\" />
+    <Folder Include="MeasurementUnit\" />
+    <Folder Include="Supplier\" />
+    <Folder Include="PurchaseOrder\" />
+  </ItemGroup>
+
+</Project>
