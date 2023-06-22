@@ -3,13 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Application.Department
+namespace Application.Department.Services
 {
-    public class DepartmentService: IDepartmentService
+    public class DepartmentService : IDepartmentService
     {
         public DepartmentService()
         {
-            
+
         }
     }
 }

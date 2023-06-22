@@ -1,5 +1,7 @@
 ﻿using Domain.Common;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Infrastructure.Data
 {
@@ -13,17 +15,18 @@ namespace Infrastructure.Data
             foreach (var entity in modelBuilder.Model.GetEntityTypes())
             {
                 var type = entity.ClrType;
-                var x = typeof(BaseEntity).CustomAttributes.ToList();
                 if (typeof(BaseEntity).IsAssignableFrom(type))
                 {
                     modelBuilder.Entity(type.Name, b =>
                     {
-                        b.HasKey(typeof(BaseEntity).CustomAttributes.First().GetType().Name);
+                        b.HasKey(nameof(BaseEntity.Id));
                     });
                 }
             }
 
             base.OnModelCreating(modelBuilder); 
         }
+
+        public DbSet<Department> Departments { get; set; }
     }
 }

@@ -6,13 +6,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Article\DTOs\" />
+    <Folder Include="Article\Interfaces\" />
+    <Folder Include="Article\Services\" />
+    <Folder Include="Brand\DTOs\" />
+    <Folder Include="Brand\Interfaces\" />
+    <Folder Include="Brand\Services\" />
     <Folder Include="Common\Exceptions\" />
     <Folder Include="Department\DTOs\" />
-    <Folder Include="Article\" />
-    <Folder Include="Brand\" />
-    <Folder Include="MeasurementUnit\" />
-    <Folder Include="Supplier\" />
-    <Folder Include="PurchaseOrder\" />
+    <Folder Include="MeasurementUnit\DTOs\" />
+    <Folder Include="MeasurementUnit\Interface\" />
+    <Folder Include="MeasurementUnit\Services\" />
+    <Folder Include="PurchaseOrder\DTOs\" />
+    <Folder Include="PurchaseOrder\Interfaces\" />
+    <Folder Include="PurchaseOrder\Services\" />
+    <Folder Include="Supplier\DTOs\" />
+    <Folder Include="Supplier\Interfaces\" />
+    <Folder Include="Supplier\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
 </Project>

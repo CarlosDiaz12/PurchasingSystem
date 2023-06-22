@@ -1,5 +1,5 @@
 ﻿using Domain.Common;
-using Domain.Repositories;
+using Application.Repositories;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
