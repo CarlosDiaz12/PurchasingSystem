@@ -3,13 +3,24 @@ namespace PurchasingSystem.API
 {
     public class Program
     {
+        private const string _corsPolicyName = "DefaultPolicy";
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             builder.Services.AddDependencyInjection(builder.Configuration);
-
+            //cors
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(_corsPolicyName,
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
+            });
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -28,6 +39,7 @@ namespace PurchasingSystem.API
 
             app.UseAuthorization();
 
+            app.UseCors();
 
             app.MapControllers();
 
