@@ -1,11 +1,10 @@
-﻿using Domain.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Entities
+namespace Application.Brands.DTOs
 {
-    public class Brand: BaseEntity
+    public class CreateBrandDTO
     {
         public string Description { get; set; }
     }

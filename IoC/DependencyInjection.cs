@@ -1,4 +1,6 @@
-﻿using Application.Repositories;
+﻿using Application.Departments.Interface;
+using Application.Departments.Services;
+using Application.Repositories;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +20,9 @@ namespace IoC
             // generic dependencies
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            // services
+            services.AddScoped<IDepartmentService, DepartmentService>();
+            // repository
             return services;
         }
     }

@@ -1,17 +1,15 @@
-﻿using Domain.Common;
+﻿using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Entities
+namespace Application.Articles.DTOs
 {
-    public class Article: BaseEntity
+    public class CreateArticleDTO
     {
         public string Description { get; set; }
         public int BrandId { get; set; }
-        public Brand Brand { get; set; }
         public int MeasurementUnitId { get; set; }
-        public MeasurementUnit MeasurementUnit { get; set; }
         public long Stock { get; set; }
     }
 }
