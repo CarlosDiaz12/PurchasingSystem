@@ -14,8 +14,6 @@ namespace Domain.Entities
         public int SupplierId { get; set; }
         public Supplier Supplier { get; set; }
         public int Quantity { get; set; }
-        public int MeasurementUnitId { get; set; }
-        public MeasurementUnit MeasurementUnit { get; set; }
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
     }
