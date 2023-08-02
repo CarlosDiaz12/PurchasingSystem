@@ -1,4 +1,5 @@
 ﻿using Application.MeasurementUnits.DTOs;
+using Application.MeasurementUnits.Interface;
 using Application.Repositories;
 using Domain.Entities;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.MeasurementUnits.Services
 {
-    public class MeasurementUnitService
+    public class MeasurementUnitService: IMeasurementUnitService
     {
         private readonly IUnitOfWork _unitOfWork;
         public MeasurementUnitService(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
