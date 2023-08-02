@@ -34,7 +34,7 @@ namespace PurchasingSystem.API
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseCors(_corsPolicyName);
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
