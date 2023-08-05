@@ -2,8 +2,10 @@
 using Application.Articles.Services;
 using Application.Brands.Interfaces;
 using Application.Brands.Services;
+using Application.Common.Interfaces;
 using Application.Departments.Interface;
 using Application.Departments.Services;
+using Application.External.Service;
 using Application.MeasurementUnits.Interface;
 using Application.MeasurementUnits.Services;
 using Application.PurchaseOrders.Interfaces;
@@ -37,6 +39,7 @@ namespace IoC
             services.AddScoped<IMeasurementUnitService, MeasurementUnitService>();
             services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
             services.AddScoped<ISupplierService, SupplierService>();
+            services.AddScoped<IExternalServices, ExternalServices>();
             // repository
             return services;
         }

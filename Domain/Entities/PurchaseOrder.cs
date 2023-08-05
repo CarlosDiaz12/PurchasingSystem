@@ -16,5 +16,7 @@ namespace Domain.Entities
         public int Quantity { get; set; }
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
+        public decimal UnitCost { get; set; }
+        public decimal Total { get; set; }
     }
 }

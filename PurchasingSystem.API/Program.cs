@@ -1,4 +1,5 @@
- using IoC;
+using Application.Common;
+using IoC;
 namespace PurchasingSystem.API
 {
     public class Program
@@ -10,6 +11,13 @@ namespace PurchasingSystem.API
 
             // Add services to the container.
             builder.Services.AddDependencyInjection(builder.Configuration);
+
+            // http client
+            builder.Services.AddHttpClient(Constants.ACCOUNTING_CLIENT_KEY, c =>
+            {
+                c.BaseAddress = new Uri(builder.Configuration["AccountingService:APIUrl"]);
+            });
+
             //cors
             builder.Services.AddCors(options =>
             {
