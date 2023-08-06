@@ -41,6 +41,7 @@ namespace IoC
             services.AddScoped<ISupplierService, SupplierService>();
             services.AddScoped<IExternalServices, ExternalServices>();
             // repository
+            services.AddScoped<IPurchaseOrderRepository, PurchaseOrderRepository>();
             return services;
         }
     }

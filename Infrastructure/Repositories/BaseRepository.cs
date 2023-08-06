@@ -9,7 +9,7 @@ namespace Infrastructure.Repositories
     public class BaseRepository<TEntity>: IBaseRepository<TEntity> where TEntity : BaseEntity
     {
         protected readonly DbContext _dbContext;
-        private readonly DbSet<TEntity> _dbSet;
+        protected readonly DbSet<TEntity> _dbSet;
         public BaseRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;

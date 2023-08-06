@@ -1,4 +1,5 @@
-﻿using Application.Repositories;
+﻿using Application.PurchaseOrders.Interfaces;
+using Application.Repositories;
 using Domain.Entities;
 using Infrastructure.Data;
 
@@ -13,7 +14,7 @@ namespace Infrastructure.Repositories
             IBaseRepository<Department> departmentRepository,
             IBaseRepository<MeasurementUnit> measurementUnitRepository,
             IBaseRepository<Supplier> supplierRepository,
-            IBaseRepository<PurchaseOrder> purchaseOrderRepository)
+            IPurchaseOrderRepository purchaseOrderRepository)
         {
             dbContext = context;
             ArticleRepository = articleRepository;
@@ -34,7 +35,7 @@ namespace Infrastructure.Repositories
 
         public IBaseRepository<Supplier> SupplierRepository { get; }
 
-        public IBaseRepository<PurchaseOrder> PurchaseOrderRepository { get; }
+        public IPurchaseOrderRepository PurchaseOrderRepository { get; }
 
         public async Task Commit() => await dbContext.SaveChangesAsync();
 
