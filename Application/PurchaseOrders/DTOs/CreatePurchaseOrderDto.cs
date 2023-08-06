@@ -10,5 +10,7 @@ namespace Application.PurchaseOrders.DTOs
         public int SupplierId { get; set; }
         public int Quantity { get; set; }
         public int DepartmentId { get; set; }
+        public decimal UnitCost { get; set; }
+        public decimal Total { get; set; }
     }
 }

@@ -24,7 +24,9 @@ namespace Application.PurchaseOrders.Services
                 ArticleId = dto.ArticleId,
                 SupplierId = dto.SupplierId,
                 Quantity = dto.Quantity,
-                DepartmentId = dto.DepartmentId
+                DepartmentId = dto.DepartmentId,
+                UnitCost = dto.UnitCost,
+                Total = dto.Total
             };
 
             await _unitOfWork.PurchaseOrderRepository.Insert(entity);
@@ -77,7 +79,9 @@ namespace Application.PurchaseOrders.Services
                 ArticleId = dto.ArticleId,
                 SupplierId = dto.SupplierId,
                 Quantity = dto.Quantity,
-                DepartmentId = dto.DepartmentId
+                DepartmentId = dto.DepartmentId,
+                UnitCost = dto.UnitCost,
+                Total = dto.Total
             };
 
             _unitOfWork.PurchaseOrderRepository.Update(entity);
