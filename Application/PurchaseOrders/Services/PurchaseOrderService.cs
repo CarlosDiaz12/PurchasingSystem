@@ -28,12 +28,18 @@ namespace Application.PurchaseOrders.Services
             var data = await _unitOfWork.ArticleRepository.Get(x => x.Id == articleId);
             return data != null;
         }
+
+        private async Task<string> CreateOrderSequence()
+        {
+            var orderCount = (await _unitOfWork.PurchaseOrderRepository.GetAll()).ToList().Count;
+            string newSequence = orderCount.ToString();
+            return newSequence.PadLeft(5, '0');
+        }
+
         public async Task Create(CreatePurchaseOrderDto dto)
         {
-
             var entity = new PurchaseOrder
             {
-                OrderNumber = dto.OrderNumber,
                 Date = dto.Date,
                 ArticleId = dto.ArticleId,
                 SupplierId = dto.SupplierId,
@@ -42,6 +48,8 @@ namespace Application.PurchaseOrders.Services
                 UnitCost = dto.UnitCost,
                 Total = dto.Total
             };
+
+            entity.OrderNumber = await CreateOrderSequence();
 
             await UpdateArticleStock(dto.ArticleId, dto.Quantity);
 
@@ -90,7 +98,6 @@ namespace Application.PurchaseOrders.Services
             var entity = new PurchaseOrder
             {
                 Id = dto.Id,
-                OrderNumber = dto.OrderNumber,
                 Date = dto.Date,
                 ArticleId = dto.ArticleId,
                 SupplierId = dto.SupplierId,

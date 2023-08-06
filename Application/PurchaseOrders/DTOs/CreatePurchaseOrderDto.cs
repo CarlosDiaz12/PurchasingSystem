@@ -4,7 +4,6 @@ namespace Application.PurchaseOrders.DTOs
 {
     public class CreatePurchaseOrderDto
     {
-        public string OrderNumber { get; set; }
         public DateTime Date { get; set; }
         public int ArticleId { get; set; }
         public int SupplierId { get; set; }
