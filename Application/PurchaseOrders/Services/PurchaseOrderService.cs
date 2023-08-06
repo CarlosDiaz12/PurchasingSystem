@@ -41,14 +41,32 @@ namespace Application.PurchaseOrders.Services
 
         public async Task<List<PurchaseOrder>> GetAll()
         {
+            string includeProps = $"{nameof(PurchaseOrder.Article)}," +
+                $"{nameof(PurchaseOrder.Department)}," +
+                $"{nameof(PurchaseOrder.Supplier)}";
             return (await _unitOfWork.PurchaseOrderRepository
-                        .GetAll())
+                        .GetAll(includeProperties: includeProps))
                         .ToList();
         }
 
         public async Task<PurchaseOrder> GetById(int id)
         {
             return await _unitOfWork.PurchaseOrderRepository.Get(x => x.Id == id);
+        }
+
+        public List<MostPurchasedArticlesDto> MostPurchasedArticles()
+        {
+            return _unitOfWork.PurchaseOrderRepository.GetMostPurchasedArticles().ToList();
+        }
+
+        public List<PurchasedArticlesByMonthDto> PurchasedArticlesByMonth()
+        {
+            return _unitOfWork.PurchaseOrderRepository.GetPurchasedArticlesByMonth().ToList();
+        }
+
+        public SumOfAllTimePurchasesDto SumOfAllTimePurchases()
+        {
+            return _unitOfWork.PurchaseOrderRepository.SumOfAllTimePurchases();
         }
 
         public async Task Update(UpdatePurchaseOrderDto dto)

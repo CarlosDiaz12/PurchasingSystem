@@ -1,4 +1,6 @@
-﻿using Application.Repositories;
+﻿using Application.Common;
+using Application.Common.Exceptions;
+using Application.Repositories;
 using Application.Suppliers.DTOs;
 using Application.Suppliers.Interfaces;
 using Domain.Entities;
@@ -15,10 +17,14 @@ namespace Application.Suppliers.Services
 
         public async Task Create(CreateSupplierDTO dto)
         {
+            if (!IdentificationValidator.IsValidIdNumber(dto.IdNumber, dto.IdentificationType))
+                throw new BusinessException("Cedula o RNC no valido.");
+
             var entity = new Supplier
             {
                 IdNumber = dto.IdNumber,
                 Name = dto.Name,
+                IdentificationType = dto.IdentificationType
             };
 
             await _unitOfWork.SupplierRepository.Insert(entity);
@@ -50,6 +56,7 @@ namespace Application.Suppliers.Services
                 Id = dto.Id,
                 IdNumber = dto.IdNumber,
                 Name = dto.Name,
+                IdentificationType = dto.IdentificationType
             };
 
             _unitOfWork.SupplierRepository.Update(entity);

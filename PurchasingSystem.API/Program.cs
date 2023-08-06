@@ -1,5 +1,9 @@
 using Application.Common;
+using Application.Common.Exceptions;
 using IoC;
+using Newtonsoft.Json;
+using System.Data;
+
 namespace PurchasingSystem.API
 {
     public class Program
@@ -35,6 +39,23 @@ namespace PurchasingSystem.API
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            // exception handler
+            app.UseExceptionHandler(a => a.Run(async context =>
+            {
+                var exception = context.Features
+                    .Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature>()
+                    .Error;
+
+
+                if (exception is BusinessException)
+                    context.Response.StatusCode = StatusCodes.Status422UnprocessableEntity;
+
+                var result = JsonConvert.SerializeObject(new { error = exception.Message });
+
+                context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(result);
+            }));
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

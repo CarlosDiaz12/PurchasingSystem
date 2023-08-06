@@ -39,5 +39,23 @@ namespace PurchasingSystem.API.Controllers
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id) => Ok(await _service.GetById(id));
+        [HttpGet("PurchasedArticlesByMonth")]
+        public IActionResult MostPurchasedArticlesByMonths()
+        {
+            return Ok(_service.PurchasedArticlesByMonth());
+        }
+
+        [HttpGet("MostPurchasedArticles")]
+        public IActionResult MostPurchasedArticles()
+        {
+            return Ok(_service.MostPurchasedArticles());
+        }
+
+
+        [HttpGet("SumOfAllTimePurchases")]
+        public IActionResult SumOfAllTimePurchases()
+        {
+            return Ok(_service.SumOfAllTimePurchases());
+        }
     }
 }

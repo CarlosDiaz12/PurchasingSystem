@@ -10,18 +10,11 @@ namespace Infrastructure.Data
         public AppDbContext(DbContextOptions<AppDbContext> options):base(options) {}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // probar esto
-            //foreach (var entity in modelBuilder.Model.GetEntityTypes())
-            //{
-            //    var type = entity.ClrType;
-            //    if (typeof(BaseEntity).IsAssignableFrom(type))
-            //    {
-            //        modelBuilder.Entity(type.Name, b =>
-            //        {
-            //            b.HasKey(nameof(BaseEntity.Id));
-            //        });
-            //    }
-            //}
+            modelBuilder.Entity<Supplier>(entity =>
+            {
+                entity.Property(x => x.IdentificationType)
+                       .HasConversion<int>();
+            });
 
             base.OnModelCreating(modelBuilder); 
         }

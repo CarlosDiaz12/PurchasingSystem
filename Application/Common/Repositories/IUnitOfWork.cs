@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.PurchaseOrders.Interfaces;
+using Domain.Entities;
 using System;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace Application.Repositories
         IBaseRepository<Department> DepartmentRepository { get; }
         IBaseRepository<MeasurementUnit> MeasurementUnitRepository { get; }
         IBaseRepository<Supplier> SupplierRepository { get; }
-        IBaseRepository<PurchaseOrder> PurchaseOrderRepository { get; }
+        IPurchaseOrderRepository PurchaseOrderRepository { get; }
         Task Commit();
     }
 }
