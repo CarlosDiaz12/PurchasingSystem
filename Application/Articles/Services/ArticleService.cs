@@ -35,8 +35,10 @@ namespace Application.Articles.Services
 
         public async Task<List<Article>> GetAll()
         {
+            string includeProps = $"{nameof(Article.MeasurementUnit)}," +
+                $"{nameof(Article.Brand)},";
             return (await _unitOfWork.ArticleRepository
-                                    .GetAll())
+                                    .GetAll(includeProperties: includeProps))
                                     .ToList();
         }
 
