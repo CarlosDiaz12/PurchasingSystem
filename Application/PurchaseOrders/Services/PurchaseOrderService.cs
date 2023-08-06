@@ -1,4 +1,5 @@
-﻿using Application.PurchaseOrders.DTOs;
+﻿using Application.Common.Exceptions;
+using Application.PurchaseOrders.DTOs;
 using Application.PurchaseOrders.Interfaces;
 using Application.Repositories;
 using Domain.Entities;
@@ -15,8 +16,21 @@ namespace Application.PurchaseOrders.Services
         {
             _unitOfWork = unitOfWork;
         }
+
+        private async Task UpdateArticleStock(int articleId, int quantity)
+        {
+            var article = await _unitOfWork.ArticleRepository.Get(x => x.Id == articleId) ?? throw new BusinessException("Articulo no encontrado.");
+            article.Stock += quantity;
+        }
+
+        private async Task<bool> ArticleExists(int articleId)
+        {
+            var data = await _unitOfWork.ArticleRepository.Get(x => x.Id == articleId);
+            return data != null;
+        }
         public async Task Create(CreatePurchaseOrderDto dto)
         {
+
             var entity = new PurchaseOrder
             {
                 OrderNumber = dto.OrderNumber,
@@ -28,6 +42,8 @@ namespace Application.PurchaseOrders.Services
                 UnitCost = dto.UnitCost,
                 Total = dto.Total
             };
+
+            await UpdateArticleStock(dto.ArticleId, dto.Quantity);
 
             await _unitOfWork.PurchaseOrderRepository.Insert(entity);
             await _unitOfWork.Commit();
