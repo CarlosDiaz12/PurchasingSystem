@@ -1,6 +1,7 @@
 using Application.Common;
 using Application.Common.Exceptions;
 using IoC;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Data;
 
@@ -61,7 +62,10 @@ namespace PurchasingSystem.API
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI( o => {
+                    o.RoutePrefix = string.Empty;
+                    o.SwaggerEndpoint("/swagger/v1/swagger.json", "Purchase System API V1");
+                });
             }
             app.UseCors(_corsPolicyName);
             app.UseHttpsRedirection();
