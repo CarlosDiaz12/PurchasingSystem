@@ -1,6 +1,5 @@
 ﻿using Application.Common.Interfaces;
 using Application.External.DTOs;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PurchasingSystem.API.Controllers
@@ -15,11 +14,17 @@ namespace PurchasingSystem.API.Controllers
             _externalServices = externalServices;
         }
 
-        [HttpPost]
+        [HttpPost("CreateAccountingEntry")]
         public async Task<ActionResult<CreateAccountingEntryResultDTO>> CreateAccountingEntry(CreateAccountingEntryDTO dto)
         {
             var result = await _externalServices.CreateAccountingEntry(dto);
             return Ok(result);
+        }
+
+        [HttpGet("GetAccountingEntries")]
+        public async Task<ActionResult<GetAccountingEntriesDTO>> GetAccountingEntries()
+        {
+            return Ok(await _externalServices.GetAccountingEntries());
         }
     }
 }

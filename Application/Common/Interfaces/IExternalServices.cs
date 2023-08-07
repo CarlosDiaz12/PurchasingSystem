@@ -9,5 +9,6 @@ namespace Application.Common.Interfaces
     public interface IExternalServices
     {
         Task<CreateAccountingEntryResultDTO> CreateAccountingEntry(CreateAccountingEntryDTO dto);
+        Task<GetAccountingEntriesDTO> GetAccountingEntries();
     }
 }

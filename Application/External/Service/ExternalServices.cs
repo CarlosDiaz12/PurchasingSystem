@@ -32,5 +32,15 @@ namespace Application.External.Service
             var data = await response.Content.ReadFromJsonAsync<CreateAccountingEntryResultDTO>();
             return data;
         }
+
+        public async Task<GetAccountingEntriesDTO> GetAccountingEntries()
+        {
+            var response = await _httpClient.GetAsync($"get-accounting-entries/auxiliar={Constants.AccountingEntry.PURCHASE_AUX_ID}");
+            if (!response.IsSuccessStatusCode)
+                throw new Exception("Error al obtener asientos contables.");
+
+            var data = await response.Content.ReadFromJsonAsync<GetAccountingEntriesDTO>();
+            return data;
+        }
     }
 }
