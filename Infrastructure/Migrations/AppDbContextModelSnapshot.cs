@@ -170,7 +170,7 @@ namespace Infrastructure.Migrations
                     b.Property<int>("SupplierId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Total")
+                    b.Property<decimal>("TotalCount")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("UnitCost")

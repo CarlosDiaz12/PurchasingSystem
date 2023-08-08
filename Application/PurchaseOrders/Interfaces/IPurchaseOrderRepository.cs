@@ -14,5 +14,6 @@ namespace Application.PurchaseOrders.Interfaces
         IEnumerable<PurchasedArticlesByMonthDto> GetPurchasedArticlesByMonth();
         IEnumerable<MostPurchasedArticlesDto> GetMostPurchasedArticles();
         SumOfAllTimePurchasesDto SumOfAllTimePurchases();
+        IEnumerable<MostPurchasedBrandsDto> GetMostPurchasedBrands();
     }
 }

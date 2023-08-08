@@ -57,5 +57,11 @@ namespace PurchasingSystem.API.Controllers
         {
             return Ok(_service.SumOfAllTimePurchases());
         }
+
+        [HttpGet("MostPurchasedBrands")]
+        public IActionResult MostPurchasedBrands()
+        {
+            return Ok(_service.MostPurchasedBrands());
+        }
     }
 }

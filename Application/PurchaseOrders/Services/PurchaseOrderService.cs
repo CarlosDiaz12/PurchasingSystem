@@ -141,5 +141,10 @@ namespace Application.PurchaseOrders.Services
                         .GetAll(filter,includeProperties: includeProps))
                         .ToList();
         }
+
+        public List<MostPurchasedBrandsDto> MostPurchasedBrands()
+        {
+            return (_unitOfWork.PurchaseOrderRepository.GetMostPurchasedBrands()).ToList();
+        }
     }
 }

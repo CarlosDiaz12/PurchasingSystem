@@ -12,5 +12,6 @@ namespace Application.PurchaseOrders.Interfaces
         List<MostPurchasedArticlesDto> MostPurchasedArticles();
         SumOfAllTimePurchasesDto SumOfAllTimePurchases();
         Task<List<PurchaseOrder>> GetAll(GetPurchaseOrderFilterDTO dto);
+        List<MostPurchasedBrandsDto> MostPurchasedBrands();
     }
 }

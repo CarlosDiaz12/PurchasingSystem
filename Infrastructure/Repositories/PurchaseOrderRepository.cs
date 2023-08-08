@@ -30,6 +30,20 @@ namespace Infrastructure.Repositories
             .Take(5);
         }
 
+        public IEnumerable<MostPurchasedBrandsDto> GetMostPurchasedBrands()
+        {
+            return _dbSet
+                .Include(x => x.Article)
+                .ThenInclude(x => x.Brand)
+                .GroupBy(x => x.Article.Brand.Description)
+                .Select(x => new MostPurchasedBrandsDto
+                {
+                    Description = x.Key,
+                    TotalCount = x.Count()
+                })
+                .OrderByDescending(x => x.TotalCount);
+        }
+
         public IEnumerable<PurchasedArticlesByMonthDto> GetPurchasedArticlesByMonth()
         {
 
