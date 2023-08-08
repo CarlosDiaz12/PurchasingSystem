@@ -1,6 +1,8 @@
 ﻿using Application.Articles.DTOs;
 using Application.Articles.Interfaces;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace PurchasingSystem.API.Controllers
 {
@@ -9,7 +11,12 @@ namespace PurchasingSystem.API.Controllers
     public class ArticleController : ControllerBase
     {
         private readonly IArticleService _service;
-        public ArticleController(IArticleService service) => _service = service;
+        private readonly AppDbContext _dbContext;
+        public ArticleController(IArticleService service, AppDbContext Context)
+        {
+            _service = service;
+            _dbContext = Context;
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetAll() => Ok(await _service.GetAll());
@@ -19,6 +26,13 @@ namespace PurchasingSystem.API.Controllers
         {
             await _service.Create(dto);
             return Ok();
+        }
+
+        [HttpGet("getTotalArticles")]
+        public async Task<IActionResult> getCountArticles()
+        {
+            var result =  await _dbContext.Articles.CountAsync();
+            return Ok(result);  
         }
 
         [HttpPut]
