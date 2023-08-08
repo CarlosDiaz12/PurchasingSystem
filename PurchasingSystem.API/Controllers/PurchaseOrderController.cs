@@ -15,7 +15,7 @@ namespace PurchasingSystem.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll() => Ok(await _service.GetAll());
+        public async Task<IActionResult> GetAll([FromQuery]GetPurchaseOrderFilterDTO filter) => Ok(await _service.GetAll(filter));
 
         [HttpPost]
         public async Task<IActionResult> Create(CreatePurchaseOrderDto dto)

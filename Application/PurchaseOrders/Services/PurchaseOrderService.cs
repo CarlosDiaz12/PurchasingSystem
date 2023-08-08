@@ -6,6 +6,7 @@ using Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Util;
 
 namespace Application.PurchaseOrders.Services
 {
@@ -68,6 +69,10 @@ namespace Application.PurchaseOrders.Services
             string includeProps = $"{nameof(PurchaseOrder.Article)}," +
                 $"{nameof(PurchaseOrder.Department)}," +
                 $"{nameof(PurchaseOrder.Supplier)}";
+
+
+
+
             return (await _unitOfWork.PurchaseOrderRepository
                         .GetAll(includeProperties: includeProps))
                         .ToList();
@@ -109,6 +114,32 @@ namespace Application.PurchaseOrders.Services
 
             _unitOfWork.PurchaseOrderRepository.Update(entity);
             await _unitOfWork.Commit();
+        }
+
+        public async Task<List<PurchaseOrder>> GetAll(GetPurchaseOrderFilterDTO dto)
+        {
+            string includeProps = $"{nameof(PurchaseOrder.Article)}," +
+                                 $"{nameof(PurchaseOrder.Department)}," +
+                                 $"{nameof(PurchaseOrder.Supplier)}";
+
+            var filter = PredicateBuilder.True<PurchaseOrder>();
+
+            if(dto.SupplierId.HasValue)
+                filter = filter.And(x => x.SupplierId == dto.SupplierId.Value);
+
+
+            if (dto.DepartmentId.HasValue)
+                filter = filter.And(x => x.DepartmentId == dto.DepartmentId.Value);
+
+
+            if (dto.ArticleId.HasValue)
+                filter = filter.And(x => x.ArticleId == dto.ArticleId.Value);
+
+
+
+            return (await _unitOfWork.PurchaseOrderRepository
+                        .GetAll(filter,includeProperties: includeProps))
+                        .ToList();
         }
     }
 }
